@@ -1,21 +1,21 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "description": "记录自己的前端笔记",
+  "description": "记录前端笔记",
   "scripts": {
     "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fsj930210/frontend.git"
+    "url": "git+https://github.com/geek-fe/frontend.git"
   },
   "keywords": [],
-  "author": "fsj930210",
-  "license": "ISC",
+  "author": "geek-fe",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fsj930210/frontend/issues"
+    "url": "https://github.com/geek-fe/frontend/issues"
   },
-  "homepage": "https://github.com/fsj930210/frontend#readme",
+  "homepage": "https://github.com/geek-fe/frontend#readme",
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",

@@ -1,14 +1,13 @@
 import MyStorage from "../index";
 const mockCallback = jest.fn();
 
-MyStorage.set("a", 1);
-MyStorage.set("b", {b: 2});
-MyStorage.set("c", { c: 3 }, 1/86400000);
-MyStorage.set({ k1: "aaa", k2: 2 });
-MyStorage.set({ k3: 1, k4: 2, expires: 1 });
-MyStorage.set({ k5: { value: 1, expires: 1 }, k6: { value: 2, expires: 2 } });
-
 describe("test MyStorage ", () => {
+  MyStorage.set("a", 1);
+  MyStorage.set("b", { b: 2 });
+  MyStorage.set("c", { c: 3 }, 1 / 86400000);
+  MyStorage.set({ k1: "aaa", k2: 2 });
+  MyStorage.set({ k3: 1, k4: 2, expires: 1 });
+  MyStorage.set({ k5: { value: 1, expires: 1 }, k6: { value: 2, expires: 2 } });
   test('test set/get method', () => {
     expect(MyStorage.get("a")).toBe(1);
     expect(MyStorage.get("b")).toEqual({ b: 2 });

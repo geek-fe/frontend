@@ -1,3 +1,4 @@
+declare function setTimeout(callback: (...args: any[]) => void, ms: number, ...args: any[]): number;
 type ThrottleOptions = {
   leading?: boolean;
   trailing?: boolean;
@@ -20,7 +21,7 @@ export default function throttle(fn: any, wait: number, options: ThrottleOptions
   let fnContext: any;
   let lastCallTime = 0;
   let result: any;
-  let timer: NodeJS.Timer | undefined;
+  let timer: number | undefined;
   function later () {
     lastCallTime = options.leading ? 0 : Date.now();
     timer = undefined;
@@ -28,7 +29,7 @@ export default function throttle(fn: any, wait: number, options: ThrottleOptions
     if (!timer) fnArgs = fnContext = undefined;
   }
   function cancel () {
-    clearTimeout(timer as NodeJS.Timer);
+    clearTimeout(timer);
     timer = fnArgs = fnContext = undefined;
     lastCallTime = 0;
   }
