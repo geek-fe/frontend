@@ -2,9 +2,10 @@ import { IStack } from "./interface";
 export default class Stack<T> implements IStack<T> {
   private count: number = 0;
   private items: Record<number, T> = {};
-  push(element: T) {
-    this.items[this.count] = element;
-    this.count++;
+  push(...element: T[]) {
+    element.forEach(el => {
+      this._add(el);
+    });
   }
 
   pop() {
@@ -53,5 +54,10 @@ export default class Stack<T> implements IStack<T> {
       arr.push(this.items[i]);
     }
     return arr;
+  }
+
+  private _add(element: T) {
+    this.items[this.count] = element;
+    this.count++;
   }
 }

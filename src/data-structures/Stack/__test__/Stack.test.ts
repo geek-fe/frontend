@@ -4,8 +4,7 @@ describe("test Stack", () => {
   const stack = new Stack<number>();
   test("test stack push method", () => {
     expect(stack.isEmpty()).toBeTruthy();
-    stack.push(1);
-    stack.push(2);
+    stack.push(1, 2);
     expect(stack.isEmpty()).toBeFalsy();
     expect(stack.size()).toBe(2);
     expect(stack.peek()).toBe(2);
