@@ -22,11 +22,11 @@
 
 ## 算法
 
-[将10进制转化为任意进制](./src/algorithms/baseConverter.ts)
+[将10进制转化为任意进制](./src/algorithms/baseConverter/baseConverter.ts)
 
-[用队列模拟击鼓传花游戏](./src/algorithms/flowerDrumTransfer.ts)
+[用队列模拟击鼓传花游戏](./src/algorithms/flowerDrumTransfer/flowerDrumTransfer.ts)
 
-[用双端队列检测回文字符串](./src/algorithms/palindromeChecker.ts)
+[用双端队列检测回文字符串](./src/algorithms/palindromeChecker/palindromeChecker.ts)
 
 ## 设计模式
 
