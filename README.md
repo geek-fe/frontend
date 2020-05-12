@@ -27,3 +27,10 @@
 [用队列模拟击鼓传花游戏](./src/algorithms/flowerDrumTransfer.ts)
 
 [用双端队列检测回文字符串](./src/algorithms/palindromeChecker.ts)
+
+## 设计模式
+
+[设计模式（Design pattern）](./src/design-patterns/README.md)代表了最佳的实践，通常被有经验的面向对象的软件开发人员所采用。设计模式是软件开发人员在软件开发过程中面临的一般问题的解决方案。这些解决方案是众多软件开发人员经过相当长的一段时间的试验和错误总结出来的。
+
+[单例模式（Singleton）](./src/design-patterns/signleton/README.md)
+
