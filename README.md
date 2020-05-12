@@ -13,3 +13,13 @@
 [MyStorage](./src/utils/storage/README.md) 封装`Storage`的库
 
 [qs](./src/utils/qs/README.md) 查询参数操作的封装
+
+## 数据结构
+
+[Stack](./src/data-structures/Stack/README.md) 栈
+
+[Queue](./src/data-structures/Queue/README.md) 队列
+
+## 算法
+
+[将10进制转化为任意进制](./src/algorithms/baseConverter.ts)
