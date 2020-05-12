@@ -4,4 +4,4 @@
 
 ## 创建型模式（Creational Patterns）
 
-[单例模式（Signleton）](./signleton/README.md)
+[单例模式（Signleton）](./singleton/README.md)
