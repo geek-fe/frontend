@@ -32,9 +32,11 @@ export default class Stack<T> implements IStack<T> {
   }
 
   clear() {
-    while (!this.isEmpty()) {
-      this.pop();
-    }
+    // while (!this.isEmpty()) {
+    //   this.pop();
+    // }
+    this.items = {};
+    this.count = 0;
   }
 
   toString() {
