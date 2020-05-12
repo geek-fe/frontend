@@ -1,4 +1,4 @@
-import Stack from "../data-structures/Stack/Stack";
+import Stack from "../../data-structures/Stack/Stack";
 
 /**
  * @description 将10进制转化为任意进制
