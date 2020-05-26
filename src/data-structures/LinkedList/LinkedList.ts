@@ -5,25 +5,25 @@ import LinkedListNode from "./LinkedListNode";
 export default class LinkedList<T> implements ILinkedList<T> {
   /**
    * @description 指向链表的头
-   * @private
+   * @protected
    * @type {(LinkedListNode<T> | undefined)}
    * @memberof LinkedList
    */
-  private head: LinkedListNode<T> | undefined;
+  protected head: LinkedListNode<T> | undefined;
   /**
    * @description 记录链表的长度
-   * @private
+   * @protected
    * @type {number}
    * @memberof LinkedList
    */
-  private count: number;
+  protected count: number;
   /**
    * @description 比较链表的方法
-   * @private
+   * @protected
    * @type {ComparatorFunction<T>}
    * @memberof LinkedList
    */
-  private compare: Comparator<T>;
+  protected compare: Comparator<T>;
   constructor(compareFunction?: ComparatorFunction<T>) {
     this.head = undefined;
     this.count = 0;
