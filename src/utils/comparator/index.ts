@@ -3,13 +3,13 @@ export type ComparatorFunction<T> = (a: T, b: T) => number;
 export default class Comparator<T> {
   private compare: ComparatorFunction<T>;
   /**
-   *Creates an instance of Comparator.
+   * Creates an instance of Comparator.
    * @author fengshaojian
    * @param {comparatorFunction<T>} comparatorFunction
    * @memberof Comparator
    */
   constructor(comparatorFunction?: ComparatorFunction<T>) {
-    this.compare = comparatorFunction || Comparator.defaultcomparatorFunction;
+    this.compare = comparatorFunction || Comparator.defaultComparatorFunction;
   }
 
   /**
@@ -21,7 +21,7 @@ export default class Comparator<T> {
    * @returns
    * @memberof Comparator
    */
-  static defaultcomparatorFunction (a: any, b: any) {
+  static defaultComparatorFunction (a: any, b: any) {
     if (a === b) {
       return 0;
     }
