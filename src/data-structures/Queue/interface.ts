@@ -14,14 +14,14 @@ export interface IQueue<T> {
    */
   enqueue(...element: T[]): void;
   /**
-   * @description 从对头移除一个元素，并返回移除的元素
+   * @description 从队头移除一个元素，并返回移除的元素
    * @author fengshaojian
    * @returns {(T | undefined)}
    * @memberof IQueue
    */
   dequeue(): T | undefined;
   /**
-   * @description 返回对头的元素
+   * @description 返回队头的元素
    * @author fengshaojian
    * @returns {(T | undefined)}
    * @memberof IQueue
