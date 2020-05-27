@@ -11,6 +11,13 @@ export default class LinkedList<T> implements ILinkedList<T> {
    */
   protected head: LinkedListNode<T> | undefined;
   /**
+   * @description 指向链表的尾
+   * @protected
+   * @type {(LinkedListNode<T> | undefined)}
+   * @memberof LinkedList
+   */
+  protected tail: LinkedListNode<T> | undefined;
+  /**
    * @description 记录链表的长度
    * @protected
    * @type {number}
@@ -26,6 +33,7 @@ export default class LinkedList<T> implements ILinkedList<T> {
   protected compare: Comparator<T>;
   constructor(compareFunction?: ComparatorFunction<T>) {
     this.head = undefined;
+    this.tail = undefined;
     this.count = 0;
     this.compare = new Comparator<T>(compareFunction);
   }
@@ -41,12 +49,15 @@ export default class LinkedList<T> implements ILinkedList<T> {
     const node = new LinkedListNode<T>(element);
     if (!this.head) { // 如果是空链表，实则添加的是第一个元素
       this.head = node;
+      this.tail = node;
     } else {
-      let current = this.head;
-      while (current.next) { // 找到最后一个元素
-        current = current.next;
-      }
-      current.next = node; // 将其 next 赋为新元素，建立链接
+      (this.tail as LinkedListNode<T>).next = node;
+      this.tail = node;
+      // let current = this.head;
+      // while (current.next) { // 找到最后一个元素
+      //   current = current.next;
+      // }
+      // current.next = node; // 将其 next 赋为新元素，建立链接
     }
     this.count++; // 更新链表长度
   }
@@ -63,8 +74,16 @@ export default class LinkedList<T> implements ILinkedList<T> {
     if (index >= 0 && index < this.count) { // 边界判断
       const node = new LinkedListNode<T>(element);
       if (index === 0) { // 如果插入在链表头，直接更新head字段
-        node.next = this.head;
-        this.head = node;
+        if (!this.head) {
+          this.head = node;
+          this.tail = node;
+        } else {
+          node.next = this.head;
+          this.head = node;
+        }
+      } else if (index === this.count) {
+        (this.tail as LinkedListNode<T>).next = node;
+        this.tail = node;
       } else {
         // 拿到当前要插入位置的前一个元素的引用
         const prev = this.getElementAt(index - 1) as LinkedListNode<T>;
@@ -89,7 +108,7 @@ export default class LinkedList<T> implements ILinkedList<T> {
    * @returns {(LinkedListNode<T> | undefined)}
    * @memberof LinkedList
    */
-  getElementAt(index: number): LinkedListNode<T> | undefined {
+  getElementAt(index: number) {
     if (index >= 0 && index < this.count) {
       let current = this.head;
       for (let i = 0; i < index && current; i++) {
@@ -135,10 +154,16 @@ export default class LinkedList<T> implements ILinkedList<T> {
       let current = this.head as LinkedListNode<T>;
       if (index === 0) { // 移除第一项
         this.head = current.next;
+        if (this.count === 1) {
+          this.tail = undefined;
+        }
       } else {
         const prev = this.getElementAt(index - 1) as LinkedListNode<T>; // 保存要移除元素的上一个值
         current = prev.next as LinkedListNode<T>; // 要移除的元素
         (prev as LinkedListNode<T>).next = current.next; // 将要移除的上一个元素的next更新为要移除元素的next
+        if (index === this.count - 1) {
+          this.tail = prev;
+        }
       }
       this.count--; // 更新链表长度
       return current.element;
@@ -176,8 +201,47 @@ export default class LinkedList<T> implements ILinkedList<T> {
     return this.head;
   }
 
+  /**
+   * @description 获取链表的最后一个元素
+   * @author fengshaojian
+   * @returns
+   * @memberof LinkedList
+   */
+  getTail () {
+    return this.tail;
+  }
+
+  /**
+   * @description 反转链表
+   * @author fengshaojian
+   * @memberof LinkedList
+   */
+  reverse() {
+    let current = this.head;
+    let prev: LinkedListNode<T> | undefined;
+    let next: LinkedListNode<T> | undefined;
+    while (current) { // 迭代
+      // 存储当前元素的下一个元素的引用
+      next = current.next;
+      // 更改当前节点的next节点为上一个节点
+      current.next = prev;
+      // 更新上一个节点和当前节点
+      prev = current;
+      current = next;
+    }
+    // 重置首尾节点
+    this.tail = this.head;
+    this.head = prev;
+  }
+
+  /**
+   * @description 清空链表
+   * @author fengshaojian
+   * @memberof LinkedList
+   */
   clear() {
     this.head = undefined;
+    this.tail = undefined;
     this.count = 0;
   }
 

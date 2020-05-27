@@ -31,7 +31,7 @@ export interface ILinkedList<T> {
    * 则返回 undefined
    * @author fengshaojian
    * @param {number} index
-   * @returns {(T | undefined)}
+   * @returns {(LinkedListNode<T> | undefined)}
    * @memberof ILinkedList
    */
   getElementAt(index: number): LinkedListNode<T> | undefined;
@@ -84,6 +84,19 @@ export interface ILinkedList<T> {
    */
   getHead(): LinkedListNode<T> | undefined;
 
+  /**
+   * @description 获取链表的最后一个元素
+   * @author fengshaojian
+   * @returns {(LinkedListNode<T> | undefined)}
+   * @memberof ILinkedList
+   */
+  getTail(): LinkedListNode<T> | undefined;
+  /**
+   * @description 反转链表
+   * @author fengshaojian
+   * @memberof ILinkedList
+   */
+  reverse(): void;
   /**
    * @description 清空链表
    * @author fengshaojian

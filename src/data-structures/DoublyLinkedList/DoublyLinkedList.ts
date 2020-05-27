@@ -1,6 +1,6 @@
-import { IDoublyLinkedList } from "./interface";
 import LinkedList from "../LinkedList/LinkedList";
 import DoublyLinkedListNode from "./DoublyLinkedListNode";
+import { IDoublyLinkedList } from "./interface";
 
 export default class DoublyLinkedList<T> extends LinkedList<T> implements IDoublyLinkedList<T> {
   protected tail: DoublyLinkedListNode<T> | undefined;
@@ -74,12 +74,42 @@ export default class DoublyLinkedList<T> extends LinkedList<T> implements IDoubl
     return undefined;
   }
 
-  getTail(): DoublyLinkedListNode<T> | undefined {
-    return this.tail;
+  getElementAt(index: number): DoublyLinkedListNode<T> | undefined {
+    return super.getElementAt(index);
   }
 
-  clear () {
-    super.clear();
-    this.tail = undefined;
+  getHead(): DoublyLinkedListNode<T> | undefined {
+    return super.getHead();
+  }
+
+  getTail(): DoublyLinkedListNode<T> | undefined {
+    return super.getTail();
+  }
+
+  toArray(): DoublyLinkedListNode<T>[] {
+    return super.toArray();
+  }
+
+  reverse(): void {
+    let current = this.head;
+    let prev: DoublyLinkedListNode<T> | undefined;
+
+    let next: DoublyLinkedListNode<T> | undefined;
+
+    while (current) {
+      // 存储当前元素的下一个引用
+      next = current.next;
+      // 存储当前元素的上一个引用
+      prev = current.prev;
+      // 更新当前元素的上一个下一个引用
+      current.next = prev;
+      current.prev = next;
+      // 迭代
+      prev = current;
+      current = next;
+    }
+    // 重置首尾
+    this.tail = this.head;
+    this.head = prev;
   }
 }
