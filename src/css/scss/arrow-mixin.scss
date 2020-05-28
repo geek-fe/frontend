@@ -1,0 +1,19 @@
+// 设置箭头
+@mixin arrow($direction, $width, $height, $borderWidth, $borderColor, $borderRadius: $borderWidth) {
+  display: inline-block;
+  width: $width;
+  height: $height;
+  border-width: $borderWidth $borderWidth 0 0;
+  border-color: $borderColor;
+  border-style: solid;
+  border-top-right-radius: $borderRadius;
+  @if $direction == top {
+    transform: rotate(-45deg);
+  } @else if $direction == right {
+    transform: rotate(45deg);
+  } @else if $direction == bottom {
+    transform: rotate(135deg);
+  } @else if $direction == left {
+    transform: rotate(-135deg);
+  }
+}

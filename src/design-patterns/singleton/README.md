@@ -1,5 +1,4 @@
-# 单例模式（Signleton）
-
+# 单例模式（Singleton）
 
 单例模式（Singleton Pattern）属于创建型模式，它提供了一种创建对象的最佳方式。
 

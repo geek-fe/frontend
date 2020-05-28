@@ -1,7 +1,7 @@
-import Signleton from "../Singleton"
+import Singleton from "../Singleton"
 
-test("test signleton pattern", () => {
-  const s1 = Signleton.getInstance();
-  const s2 = Signleton.getInstance();
+test("test Singleton pattern", () => {
+  const s1 = Singleton.getInstance();
+  const s2 = Singleton.getInstance();
   expect(s1 === s2).toBeTruthy();
 });

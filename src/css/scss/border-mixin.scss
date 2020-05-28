@@ -1,0 +1,73 @@
+// 移动端1px top
+@mixin borderTopLine($borderStyle: solid, $borderColor: #e0e0e0) {
+  &::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 1px;
+    border-top: 1px $borderStyle $borderColor;
+    transform-origin: left top;
+    transform: scaleY(0.5);
+  }
+}
+// 移动端1px bottom
+@mixin borderBottomLine($borderStyle: solid, $borderColor: #e0e0e0) {
+  &::after{
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    border-bottom: 1px $borderStyle $borderColor;
+    transform-origin: left top;
+    transform: scaleY(0.5);
+  }
+}
+// 移动端1px left
+@mixin borderLeftLine($borderStyle: solid, $borderColor: #e0e0e0) {
+  &::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    border-left: 1px $borderStyle $borderColor;
+    transform-origin: left top;
+    transform: scaleX(0.5);
+  }
+}
+// 移动端1px right
+@mixin borderRightLine($borderStyle: solid, $borderColor: #e0e0e0) {
+  &::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 1px;
+    border-right: 1px $borderStyle $borderColor;
+    transform-origin: left top;
+    transform: scaleX(0.5);
+  }
+}
+
+// 移动端1px 所有方向
+@mixin borderLine ($borderStyle: solid, $borderColor: #e0e0e0, $borderRadius: 0) {
+  border-radius: $borderRadius / 2;
+  &::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px $borderStyle $borderColor;
+    width: 200%;
+    height: 200%;
+    transform: scale(.5);
+    transform-origin: left top;
+    border-radius: $borderRadius;
+  }
+}
