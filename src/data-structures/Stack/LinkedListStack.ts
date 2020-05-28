@@ -1,7 +1,7 @@
 import { IStack } from "./interface";
 import LinkedList from "../LinkedList/LinkedList";
 
-export class LinkedListStack<T> implements IStack<T> {
+export default class LinkedListStack<T> implements IStack<T> {
   private items: LinkedList<T>;
   constructor() {
     this.items = new LinkedList<T>();
