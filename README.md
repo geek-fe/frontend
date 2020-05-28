@@ -20,6 +20,8 @@
 
 [Queue](./src/data-structures/Queue/README.md) 队列
 
+[LinkedList](./src/data-structures/LinkedList/README.md) 链表
+
 ## 算法
 
 [将10进制转化为任意进制](./src/algorithms/baseConverter/baseConverter.ts)

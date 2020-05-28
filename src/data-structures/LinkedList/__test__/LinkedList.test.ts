@@ -76,7 +76,6 @@ describe("test LinkedList methods", () => {
     expect(linkedList.indexOf(30)).toBe(2);
     expect(linkedList.indexOf(40)).toBe(3);
     expect(linkedList.toString()).toEqual("10,20,30,40,50");
-    expect(linkedList.toArray().length).toBe(5);
     linkedList.reverse();
     expect(linkedList.getHead()?.element).toBe(50);
     expect(linkedList.getTail()?.element).toBe(10);

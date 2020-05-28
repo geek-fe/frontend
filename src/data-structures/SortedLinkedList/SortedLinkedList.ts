@@ -1,5 +1,13 @@
 import LinkedList from "../LinkedList/LinkedList";
 
+/**
+ * @description 升序链表
+ * @author fengshaojian
+ * @export
+ * @class SortedLinkedList
+ * @extends {LinkedList<T>}
+ * @template T
+ */
 export default class SortedLinkedList<T> extends LinkedList<T> {
   /**
    * @description 向链表尾部添加元素

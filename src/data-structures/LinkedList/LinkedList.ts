@@ -94,9 +94,9 @@ export default class LinkedList<T> implements ILinkedList<T> {
         // 前一个引用的next指向新插入的元素
         prev.next = node;
         // 更新链表长度
-        this.count++;
-        return true;
       }
+      this.count++;
+      return true;
     }
     return false;
   }
@@ -217,10 +217,25 @@ export default class LinkedList<T> implements ILinkedList<T> {
    * @memberof LinkedList
    */
   reverse() {
+    // let current = this.head;
+    // let prev: LinkedListNode<T> | undefined;
+    // let next: LinkedListNode<T> | undefined;
+    // while (current) { // 迭代
+    //   // 存储当前元素的下一个元素的引用
+    //   next = current.next;
+    //   // 更改当前节点的next节点为上一个节点
+    //   current.next = prev;
+    //  // 更新上一个节点和当前节点
+    //   prev = current;
+    //   current = next;
+    // }
+    // // 重置首尾节点
+    // this.tail = this.head;
+    // this.head = prev;
     let current = this.head;
     let prev: LinkedListNode<T> | undefined;
     let next: LinkedListNode<T> | undefined;
-    while (current) { // 迭代
+    for (let i = 0; i < this.count && current; i++) {
       // 存储当前元素的下一个元素的引用
       next = current.next;
       // 更改当前节点的next节点为上一个节点

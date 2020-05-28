@@ -1,6 +1,14 @@
 import LinkedList from "../LinkedList/LinkedList";
 import LinkedListNode from "../LinkedList/LinkedListNode";
 
+/**
+ * @description 循环链表
+ * @author fengshaojian
+ * @export
+ * @class CircularLinkedList
+ * @extends {LinkedList<T>}
+ * @template T
+ */
 export default class CircularLinkedList<T> extends LinkedList<T> {
   /**
    * @description 向链表尾部添加元素
@@ -80,5 +88,12 @@ export default class CircularLinkedList<T> extends LinkedList<T> {
       return current.element;
     }
     return undefined;
+  }
+
+  reverse() {
+    super.reverse();
+    if (this.tail) {
+      this.tail.next = this.head;
+    }
   }
 }
