@@ -1,3 +1,13 @@
+// 箭头
+.arrow (@direction, @width, @height, @borderWidth, @borderColor, @borderRadius: 0) {
+  display: inline-block;
+  width: @width;
+  height: @height;
+  border-width: @borderWidth @borderWidth 0 0;
+  border-color: @borderColor;
+  border-style: solid;
+  border-top-right-radius: @borderRadius;
+}
 .arrow (@direction,  @width, @height, @borderWidth, @borderColor, @borderRadius: 0) when (@direction = top) {
   transform: rotate(-45deg);
 }
@@ -10,12 +20,4 @@
 .arrow (@direction,  @width, @height, @borderWidth, @borderColor, @borderRadius: 0) when (@direction = left) {
   transform: rotate(-135deg);
 }
-.arrow (@direction, @width, @height, @borderWidth, @borderColor, @borderRadius: 0) {
-  display: inline-block;
-  width: @width;
-  height: @height;
-  border-width: @borderWidth @borderWidth 0 0;
-  border-color: @borderColor;
-  border-style: solid;
-  border-top-right-radius: @borderRadius;
-}
+

@@ -1,0 +1,33 @@
+// 三角形
+.triangle(@direction: bottom, @borderColor: #ccc, @borderTopWidth: 7px, @borderRightWidth: 7px, @borderBottomWidth: 7px,@borderLeftWidth: 7px) {
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: @borderLeftWidth solid transparent;
+    border-top: @borderTopWidth solid transparent;
+    border-right: @borderRightWidth solid transparent;
+    border-bottom: @borderBottomWidth solid transparent;
+  }
+}
+.triangle(@direction: bottom, @borderColor: #ccc, @borderTopWidth: 7px, @borderRightWidth: 7px, @borderBottomWidth: 7px,@borderLeftWidth: 7px) when(@direction = top) {
+  &::after{
+    border-bottom-color: @borderColor;
+  }
+}
+.triangle(@direction: bottom, @borderColor: #ccc, @borderTopWidth: 7px, @borderRightWidth: 7px, @borderBottomWidth: 7px,@borderLeftWidth: 7px) when(@direction = right) {
+  &::after{
+    border-left-color: @borderColor;
+  }
+}
+.triangle(@direction: bottom, @borderColor: #ccc, @borderTopWidth: 7px, @borderRightWidth: 7px, @borderBottomWidth: 7px,@borderLeftWidth: 7px) when(@direction = bottom) {
+  &::after{
+    border-top-color: @borderColor;
+  }
+}
+.triangle(@direction: bottom, @borderColor: #ccc, @borderTopWidth: 7px, @borderRightWidth: 7px, @borderBottomWidth: 7px,@borderLeftWidth: 7px) when(@direction = left) {
+  &::after{
+    border-right-color: @borderColor;
+  }
+}

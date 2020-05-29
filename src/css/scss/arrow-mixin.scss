@@ -1,4 +1,4 @@
-// 设置箭头
+// 箭头
 @mixin arrow($direction, $width, $height, $borderWidth, $borderColor, $borderRadius: $borderWidth) {
   display: inline-block;
   width: $width;
