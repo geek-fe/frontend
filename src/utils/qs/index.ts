@@ -1,4 +1,4 @@
-const inBrowser = typeof window !== "undefined";
+import { inBrowser } from "../utils";
 
 /**
  * @description 获取当前浏览器链接的所有查询参数

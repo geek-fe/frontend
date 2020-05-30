@@ -1,5 +1,4 @@
 import qs from "../index";
-
 describe(" test qs", () => {
   test("get method", () => {
     const url = "https://www.example.com/#/profile?a=1&b=2&c=3";
