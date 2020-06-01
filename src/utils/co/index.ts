@@ -5,14 +5,18 @@ import { isPromise, isGeneratorFunction, isGenerator, getType } from "../utils";
  * @author fengshaojian
  * @export
  * @param {*} this
- * @param {(...args: any[]) => Generator<any, any, any>} gen
+ * @param {(...args: any[]) => Generator<any, any, any> |  Generator<any, any, any>} gen
  * @param {...any[]} rest
  * @returns { Promise<any> }
  */
-export default function co(this: any, gen: (...args: any[]) => Generator<any, any, any>, ...rest: any[]): Promise<any> {
+export default function co(this: any, gen: (...args: any[]) => Generator<any, any, any> | Generator<any, any, any>, ...rest: any[]): Promise<any> {
   return new Promise<any>((resolve, reject) => {
-    const it = gen.apply(this, rest);
-
+    let it: Generator<any, any, any>;
+    if (typeof gen === "function") {
+      it = gen.apply(this, rest);
+    } else {
+      it = gen;
+    }
     onFulfilled(); // eslint-disable-line
     function onFulfilled(res?: any) {
       let ret: any;
@@ -50,7 +54,7 @@ export default function co(this: any, gen: (...args: any[]) => Generator<any, an
     }
     function thunkToPromise(this: any, fn: Function) {
       return new Promise((resolve, reject) => {
-        fn.call(this, (err: Error, res: any) => {
+        fn.call(this, (err: Error, ...res: any[]) => {
           if (err) return reject(err);
           resolve(res);
         });
