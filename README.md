@@ -4,7 +4,7 @@
 
 ## 工具库(utils)
 
-[jsonp](./src/utils/jsonp/README.md) 一个跨域请求的库
+[jsonp](./src/utils/jsonp/README.md) 通过`jsonp`跨域的库，返回`promise`
 
 [debounce](./src/utils/debounce/README.md) 防抖函数
 
@@ -13,6 +13,10 @@
 [MyStorage](./src/utils/storage/README.md) 封装`Storage`的库
 
 [qs](./src/utils/qs/README.md) 查询参数操作的封装
+
+[MyPromise](./src/utils/promise/README.md) 手写一个符合规范的`Promise`
+
+[co](./src/utils/co/README.md) 自执行`generator`的库
 
 ## 数据结构
 

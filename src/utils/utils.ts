@@ -17,13 +17,16 @@ export function isAndroid(): boolean {
 export function isTel(phone: string): boolean {
   return /^1[0-9]{10}$/g.test(phone);
 }
+// 获取传入值的类型
 export function getType(value: any): string {
   return ({}).toString.call(value).slice(8, -1);
 }
 
+// 判断是否是generator
 export function isGenerator(value: any) {
   return value && typeof value.next === "function" && typeof value.throw === "function";
 }
+// 判断是否是generator函数
 export function isGeneratorFunction(value: any) {
   if (!value) return false;
   const constructor = value.constructor;
@@ -31,6 +34,7 @@ export function isGeneratorFunction(value: any) {
   if (constructor.name === "GeneratorFunction" || constructor.displayName === "GeneratorFunction") return true;
   return isGenerator(constructor.prototype);
 }
+// 判断是否是promise
 export function isPromise(value: any) {
   return value instanceof Promise || (value && typeof value.then === "function");
 }
