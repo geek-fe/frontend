@@ -1,3 +1,23 @@
+//                       .::::.
+//                     .::::::::.
+//                    :::::::::::
+//                 ..:::::::::::'
+//              '::::::::::::'
+//                .::::::::::
+//           '::::::::::::::..
+//                ..::::::::::::.
+//              ``::::::::::::::::
+//               ::::``:::::::::'        .:::.
+//              ::::'   ':::::'       .::::::::.
+//            .::::'      ::::     .:::::::'::::.
+//           .:::'       :::::  .:::::::::' ':::::.
+//          .::'        :::::.:::::::::'      ':::::.
+//         .::'         ::::::::::::::'         ``::::.
+//     ...:::           ::::::::::::'              ``::.
+//    ````':.          ':::::::::'                  ::::..
+//                       '.:::::'                    ':'````..
+//
+
 import { getType } from "../utils";
 const PENDING = "pending";
 const FULFILLED = "fulfilled";
@@ -6,7 +26,7 @@ const REJECTED = "rejected";
 function resolvePromise(promise: MyPromise<any>, x: any, resolve: (v?: any) => void, reject: (r?: any) => void) {
   if (promise === x) return reject(new TypeError("循环引用了"));
   if (x instanceof MyPromise) { // eslint-disable-line
-    if (x.status === PENDING) {
+    if (x.status === PENDING) { // 如果是pending状态有可能被resolve掉, resolve的值得重新走一遍流程
       x.then(function (v) {
         resolvePromise(promise, v, resolve, reject);
       }, reject);
@@ -21,22 +41,26 @@ function resolvePromise(promise: MyPromise<any>, x: any, resolve: (v?: any) => v
     try {
       then = x.then; // because x.then could be a getter
       if (typeof then === "function") { // 2.3.3.3
-        then.call(x, (y: any) => { // 2.3.3.3.1
-          if (called) return; // 2.3.3.3.3
+        try {
+          then.call(x, (y: any) => { // 2.3.3.3.1
+            if (called) return; // 2.3.3.3.3
+            called = true;
+            return resolvePromise(promise, y, resolve, reject);
+          }, (r: any) => { // 2.3.3.3.2
+            if (called) return; // 2.3.3.3.3
+            called = true;
+            return reject(r);
+          });
+        } catch (error) {// 2.3.3.3.4
+          if (called) return; // 2.3.3.3.4.1
           called = true;
-          return resolvePromise(promise, y, resolve, reject);
-        }, (r: any) => { // 2.3.3.3.2
-          if (called) return; // 2.3.3.3.3
-          called = true;
-          return reject(r);
-        });
+          return reject(error); // 2.3.3.3.4.2
+        }
       } else {
         return resolve(x);
       }
-    } catch (error) { // 2.3.3.3.4
-      if (called) return; // 2.3.3.3.4.1
-      called = true;
-      return reject(error); // 2.3.3.3.4.2
+    } catch (error) {
+      return reject(error);
     }
   } else {
     return resolve(x);
@@ -60,19 +84,26 @@ export default class MyPromise<T> {
   private rejectCallbacks: any[] = [];
   constructor(executor: (resolve: (value?: T | PromiseLike<T>) => void, reject: (reason?: any) => void) => void) {
     const resolve = (value?: T | PromiseLike<T>) => {
-      if (this.status !== PENDING) return;
-      this.status = FULFILLED;
-      this.value = value;
-      this.resolveCallbacks.forEach(fn => fn()); // 发布
+      setTimeout(() => {
+        if (this.status === PENDING) {
+          this.status = FULFILLED;
+          this.value = value;
+          this.resolveCallbacks.forEach(fn => fn()); // 发布
+        }
+      }, 0);
     };
     const reject = (reason?: any) => {
-      if (this.status !== PENDING) return;
-      this.status = REJECTED;
-      this.reason = reason;
-      if (this.rejectCallbacks.length === 0) {
-        console.error(reason);
-      }
-      this.rejectCallbacks.forEach(fn => fn()); // 发布
+      setTimeout(() => {
+        if (this.status === PENDING) {
+          this.status = REJECTED;
+          this.reason = reason;
+          if (this.rejectCallbacks.length === 0) {
+            console.error(reason);
+          }
+          this.rejectCallbacks.forEach(fn => fn()); // 发布
+        }
+      }, 0);
+      
     };
     try {
       // 用户可能在executor直接抛出一个错误
@@ -126,24 +157,20 @@ export default class MyPromise<T> {
       // 10秒之后才resolve，此时需要把这个onFulfilled放到一个数组里面，等到真正resolve的时候再去执行，同理reject也是
       promise2 = new MyPromise<any>((resolve, reject) => {
         this.resolveCallbacks.push(() => { // 订阅
-          setTimeout(() => {
-            try {
-              const x = onFulfilled(this.value);
-              resolvePromise(promise2, x, resolve, reject); // 处理then的返回值
-            } catch (error) {
-              reject(error);
-            }
-          }, 0);
+          try {
+            const x = onFulfilled(this.value);
+            resolvePromise(promise2, x, resolve, reject); // 处理then的返回值
+          } catch (error) {
+            reject(error);
+          }
         });
         this.rejectCallbacks.push(() => {
-          setTimeout(() => {
-            try {
-              const x = onRejected(this.reason);
-              resolvePromise(promise2, x, resolve, reject); // 处理then的返回值
-            } catch (error) {
-              reject(error);
-            }
-          }, 0);
+          try {
+            const x = onRejected(this.reason);
+            resolvePromise(promise2, x, resolve, reject); // 处理then的返回值
+          } catch (error) {
+            reject(error);
+          }
         });
       });
     }
@@ -301,7 +328,7 @@ export default class MyPromise<T> {
    * @memberof MyPromise
    */
   static retry(callback: (...args: any[]) => MyPromise<any> | PromiseLike<any>, count: number, delay: number = 2000) {
-    return new Promise<any>((resolve, reject) => {
+    return new MyPromise<any>((resolve, reject) => {
       function fn () {
         callback().then((v: any) => {
           resolve(v);
@@ -314,7 +341,26 @@ export default class MyPromise<T> {
           }
         });
       }
+      fn();
     });
+  }
+  /**
+   * @description 取消promise链
+   * @author fengshaojian
+   * @static
+   * @memberof MyPromise
+   */
+  static cancel () {
+    return new MyPromise<any>(function(){});
+  }
+  /**
+   * @description 取消promise链
+   * @author fengshaojian
+   * @static
+   * @memberof MyPromise
+   */
+  static stop() {
+    return new MyPromise<any>(function () { });
   }
 }
 // MyPromise.deferred = MyPromise.defer = function () {
