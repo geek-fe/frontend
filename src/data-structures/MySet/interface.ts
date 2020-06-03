@@ -57,4 +57,19 @@ export interface ISet<T> {
    * @memberof ISet
    */
   size(): number;
+  /**
+   * @description 返回集合是否为空
+   * @author fengshaojian
+   * @returns {boolean}
+   * @memberof ISet
+   */
+  isEmpty(): boolean;
+
+  /**
+   * @description 转化为数组
+   * @author fengshaojian
+   * @returns {string}
+   * @memberof ISet
+   */
+  toString(): string;
 }

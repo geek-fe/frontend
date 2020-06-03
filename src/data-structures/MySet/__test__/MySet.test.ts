@@ -1,4 +1,4 @@
-import MySet from "../Set";
+import MySet from "../MySet";
 
 const mockCallback = jest.fn();
 
@@ -6,13 +6,16 @@ describe("test MySet", () => {
   test("test MySet methods", () => {
     const set = new MySet<number>();
     expect(set.size()).toBe(0);
+    expect(set.isEmpty()).toBeTruthy();
     expect(set.add(1)).toBeTruthy();
     expect(set.add(1)).toBeFalsy();
     expect(set.add(2)).toBeTruthy();
     expect(set.add(3)).toBeTruthy();
     expect(set.add(4)).toBeTruthy();
     expect(set.add(5)).toBeTruthy();
+    expect(set.isEmpty()).toBeFalsy();
     expect(set.size()).toBe(5);
+    expect(set.toString()).toEqual("1,2,3,4,5");
     expect(set.values()).toStrictEqual([1, 2, 3, 4, 5]);
     expect(set.has(1)).toBeTruthy();
     set.forEach(mockCallback);
@@ -30,6 +33,9 @@ describe("test MySet", () => {
     expect(mockCallback.mock.calls.length).toBe(9);
     // 第6次调用函数时的第一个参数是 2
     expect(mockCallback.mock.calls[5][0]).toBe(2);
+    set.clear();
+    expect(set.isEmpty()).toBeTruthy();
+    expect(set.size()).toBe(0);
   });
   test("union method", () => {
     const s1 = new MySet<number>();

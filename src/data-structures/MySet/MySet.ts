@@ -88,6 +88,33 @@ export default class MySet<T> implements ISet<T> {
   };
 
   /**
+   * @description 返回集合是否为空
+   * @author fengshaojian
+   * @returns
+   * @memberof MySet
+   */
+  isEmpty() {
+    return this.size() === 0;
+  }
+
+  /**
+   * @description 转为字符串
+   * @author fengshaojian
+   * @memberof MySet
+   */
+  toString() {
+    if (this.isEmpty()) {
+      return "";
+    }
+    const values = this.values();
+    let str = `${values[0]}`;
+    for (let i = 1; i < values.length; i++) {
+      str = `${str},${(values[i] as any).toString()}`;
+    }
+    return str;
+  }
+
+  /**
    * @description 并集
    * @author fengshaojian
    * @param {MySet<T>} set
