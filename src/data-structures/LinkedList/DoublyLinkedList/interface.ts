@@ -1,5 +1,5 @@
 import DoublyLinkedListNode from "./DoublyLinkedListNode";
-import { ILinkedList } from "../LinkedList/interface";
+import { ILinkedList } from "../interface";
 
 /**
  * @description 链表接口

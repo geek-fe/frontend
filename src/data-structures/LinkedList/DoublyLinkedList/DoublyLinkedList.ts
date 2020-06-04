@@ -1,4 +1,4 @@
-import LinkedList from "../LinkedList/LinkedList";
+import LinkedList from "../LinkedList";
 import DoublyLinkedListNode from "./DoublyLinkedListNode";
 import { IDoublyLinkedList } from "./interface";
 

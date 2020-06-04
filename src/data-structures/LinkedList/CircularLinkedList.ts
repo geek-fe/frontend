@@ -1,5 +1,5 @@
-import LinkedList from "../LinkedList/LinkedList";
-import LinkedListNode from "../LinkedList/LinkedListNode";
+import LinkedList from "./LinkedList";
+import LinkedListNode from "./LinkedListNode";
 
 /**
  * @description 循环链表

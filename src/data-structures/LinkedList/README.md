@@ -10,11 +10,11 @@
 
 [LinkedList(单向链表)](./LinkedList.ts) 节只有指向它下一个节点的引用
 
-[DoublyLinkedList(双向链表)](../DoublyLinkedList/DoublyLinkedList.ts) 是指一个节点同时拥有指向它上一个节点的引用，和指向下一个节点的引用
+[DoublyLinkedList(双向链表)](./DoublyLinkedList/DoublyLinkedList.ts) 是指一个节点同时拥有指向它上一个节点的引用，和指向下一个节点的引用
 
-[CircularLinkedList(循环链表)](../CircularLinkedList/CircularLinkedList.ts) 是指尾节点的下一个节点指向头节点
+[CircularLinkedList(循环链表)](./CircularLinkedList.ts) 是指尾节点的下一个节点指向头节点
 
-[SortedLinkedList(有序链表)](../SortedLinkedList/SortedLinkedList.ts) 插入时有序的插入来保证整个链表有序
+[SortedLinkedList(有序链表)](./SortedLinkedList.ts) 插入时有序的插入来保证整个链表有序
 
 ## API
 

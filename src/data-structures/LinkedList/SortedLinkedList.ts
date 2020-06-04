@@ -1,4 +1,4 @@
-import LinkedList from "../LinkedList/LinkedList";
+import LinkedList from "./LinkedList";
 
 /**
  * @description 升序链表

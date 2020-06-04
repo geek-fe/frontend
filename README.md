@@ -30,6 +30,8 @@
 
 [Dictionary](./src/data-structures/Dictionary/README.md) 字典
 
+[HashTable](./src/data-structures/HashTable/README.md) 散列表
+
 ## 算法
 
 [将10进制转化为任意进制](./src/algorithms/baseConverter/baseConverter.ts)
