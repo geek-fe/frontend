@@ -38,3 +38,15 @@ export function isGeneratorFunction(value: any) {
 export function isPromise(value: any) {
   return value instanceof Promise || (value && typeof value.then === "function");
 }
+// 默认转为字符串
+
+export function defaultToString(value: any): string {
+  if (value === null) {
+    return "NULL";
+  } else if (value === undefined) {
+    return "UNDEFINED";
+  } else if (typeof value === "string" || value instanceof String) {
+    return `${value}`;
+  }
+  return value.toString();
+}

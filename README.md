@@ -26,6 +26,10 @@
 
 [LinkedList](./src/data-structures/LinkedList/README.md) 链表
 
+[MySet](./src/data-structures/MySet/README.md) 集合
+
+[Dictionary](./src/data-structures/Dictionary/README.md) 字典
+
 ## 算法
 
 [将10进制转化为任意进制](./src/algorithms/baseConverter/baseConverter.ts)

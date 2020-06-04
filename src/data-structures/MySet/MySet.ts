@@ -1,7 +1,7 @@
 import { ISet } from "./interface";
 
 export default class MySet<T> implements ISet<T> {
-  private items: Record<string, T> = {};
+  private items: any = {};
 
   /**
    * @description 向集合添加一个新元素
@@ -12,7 +12,7 @@ export default class MySet<T> implements ISet<T> {
    */
   add(value: T): boolean {
     if (!this.has(value)) {
-      this.items[JSON.stringify(value)] = value;
+      this.items[value] = value;
       return true;
     }
     return false;
@@ -63,7 +63,7 @@ export default class MySet<T> implements ISet<T> {
    * @memberof MySet
    */
   has(value: T): boolean {
-    if (Object.prototype.hasOwnProperty.call(this.items, JSON.stringify(value))) {
+    if (Object.prototype.hasOwnProperty.call(this.items, value as any)) {
       return true;
     }
     return false;
@@ -76,7 +76,7 @@ export default class MySet<T> implements ISet<T> {
    * @memberof MySet
    */
   values() {
-    return Object.values(this.items);
+    return Object.values(this.items as Record<any, T>);
   }
 
   /**
