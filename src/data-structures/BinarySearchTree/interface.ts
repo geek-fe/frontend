@@ -1,3 +1,5 @@
+import BinarySearchTreeNode from "./BinarySearchTreeNode";
+
 export interface IBinarySearchTree<T> {
   /**
    * @description 向树中插入一个新的键。
@@ -19,32 +21,32 @@ export interface IBinarySearchTree<T> {
    * @returns {通过中序遍历方式遍历所有节点}
    * @memberof IBinarySearchTree
    */
-  inOrderTraverse(): void;
+  inOrderTraverse(callback: (...args: any[]) => void): void;
   /**
    * @description 通过先序遍历方式遍历所有节点
    * @author fengshaojian
    * @memberof IBinarySearchTree
    */
-  preOrderTraverse(): void;
+  preOrderTraverse(callback: (...args: any[]) => void): void;
   /**
    * @description 通过后序遍历方式遍历所有节点
    * @author fengshaojian
    * @memberof IBinarySearchTree
    */
-  postOrderTraverse(): void;
+  postOrderTraverse(callback: (...args: any[]) => void): void;
   /**
    * @description 返回树中最小的值
    * @author fengshaojian
    * @memberof IBinarySearchTree
    */
-  min(): T;
+  min(): BinarySearchTreeNode<T> | null;
 
   /**
    * @description  返回树中最大的值
    * @author fengshaojian
    * @memberof IBinarySearchTree
    */
-  max(): T;
+  max(): BinarySearchTreeNode<T> | null;
   /**
    * @description 从树中移除某个值。
    * @author fengshaojian
