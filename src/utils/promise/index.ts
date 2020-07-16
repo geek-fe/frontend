@@ -36,7 +36,7 @@ function resolvePromise(promise: MyPromise<any>, x: any, resolve: (v?: any) => v
             called = true;
             return reject(r);
           });
-        } catch (error) {// 2.3.3.3.4
+        } catch (error) { // 2.3.3.3.4
           if (called) return; // 2.3.3.3.4.1
           called = true;
           return reject(error); // 2.3.3.3.4.2
@@ -88,7 +88,6 @@ export default class MyPromise<T> {
           this.rejectCallbacks.forEach(fn => fn()); // 发布
         }
       }, 0);
-      
     };
     try {
       // 用户可能在executor直接抛出一个错误
@@ -329,6 +328,7 @@ export default class MyPromise<T> {
       fn();
     });
   }
+
   /**
    * @description 取消promise链
    * @author fengshaojian
@@ -336,8 +336,9 @@ export default class MyPromise<T> {
    * @memberof MyPromise
    */
   static cancel () {
-    return new MyPromise<any>(function(){});
+    return new MyPromise<any>(function() {});
   }
+
   /**
    * @description 取消promise链
    * @author fengshaojian

@@ -50,3 +50,7 @@ export function defaultToString(value: any): string {
   }
   return value.toString();
 }
+
+export function swap(arr: any[], a: number, b: number) {
+  [arr[b], arr[a]] = [arr[a], arr[b]];
+}
